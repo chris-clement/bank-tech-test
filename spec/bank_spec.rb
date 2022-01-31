@@ -39,5 +39,10 @@ describe Bank do
       @bank.withdraw(50)
       expect(@bank.credit).to equal 50
     end
+    it('Updates the credit variable to only the latest amount withdrawn') do
+      @bank.withdraw(50)
+      @bank.withdraw(20)
+      expect(@bank.credit).to equal 20
+    end
   end
 end
