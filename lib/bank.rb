@@ -30,7 +30,9 @@ class Bank
   end
 
   def withdraw(amount, date = Date.today())
-    if !date_valid?(date)
+    if !amount.is_a? Integer
+      raise 'That amount is not recognised as a value, please try again.'
+    elsif !date_valid?(date)
       raise 'That date is not recognised, please try again.'
     elsif amount <= 0
       raise'Cannot withdraw a non-positive amount, did you mean to deposit'

@@ -93,6 +93,9 @@ describe Bank do
     it('Throws an error if you enter a date which is not a date') do
       expect { @bank.withdraw(50, "31/02/2021") }.to raise_error 'That date is not recognised, please try again.'
     end
+    it('Throws an error if you enter a amount which is not a integer') do
+      expect { @bank.withdraw("six") }.to raise_error 'That amount is not recognised as a value, please try again.'
+    end
   end
 
   describe '#add_to_history' do
