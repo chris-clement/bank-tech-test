@@ -49,7 +49,7 @@ Click an emoji to tell us.
 
 # Planning
 
-1. Set up deposit method. This will include a balance variable. Not date to begin with. 
+1. Set up deposit method. This will include a balance variable. Not date to begin with. :white_check_mark:
 2. Add a debit variable which will be updated when a deposit is made.
 3. Add a date element. So deposit made on a given date.
 4. Add a withdrawal method. Make this with a date too. 
