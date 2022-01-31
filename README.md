@@ -69,9 +69,9 @@ array.sort_by! { |transaction| transaction["date"]}.
 
 # Edge Cases to consider
 
-- What if withdrawal is called with a negative integer
-- What if deposit is called with a negative integer
-- What if the balance goes below 0, can you withdraw? Assuming yes for now. Overdraft limits could be introduced if needed.
+- withdraw with non-positive number => Error Thrown :white_check_mark:
+- deposit with non-positive number => Error Thrown :white_check_mark:
+- Can balance fall below 0 => Assuming yes for now. Overdraft limits could be introduced if needed. :white_check_mark:
 - What if date is not in right format. 
-- What if date is in the future? Fine as shown in acceptance criteria. 
-- What if a date is not given? Default value perhaps.
+- Date is in the future => Fine as shown in acceptance criteria. :white_check_mark:
+- Date is not given => Default value of today is used :white_check_mark:
