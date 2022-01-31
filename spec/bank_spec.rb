@@ -17,19 +17,19 @@ describe Bank do
     it('Increases the balance by the amount deposited') do
       expect { @bank.deposit(50) }.to change { @bank.balance }.by 50
     end
-    it('Updates the debit variable to equal the amount desposited') do
+    it('Updates the credit variable to equal the amount desposited') do
       @bank.deposit(50)
-      expect(@bank.debit).to equal 50
+      expect(@bank.credit).to equal 50
     end
-    it('Updates the debit variable to only the latest amount desposited') do
+    it('Updates the credit variable to only the latest amount desposited') do
       @bank.deposit(50)
       @bank.deposit(20)
-      expect(@bank.debit).to equal 20
+      expect(@bank.credit).to equal 20
     end
-    it('The credit variable is set to 0 after a deposit is made') do
+    it('The debit variable is set to 0 after a deposit is made') do
       @bank.withdraw(30)
       @bank.deposit(10)
-      expect(@bank.credit).to equal 0
+      expect(@bank.debit).to equal 0
     end
     it('Deposits have an associated date, this defaults to today if one is not provided') do
       @bank.deposit(100)
@@ -52,19 +52,19 @@ describe Bank do
     it('Reduces the balance by the amount withdrawn') do
       expect { @bank.withdraw(50) }.to change { @bank.balance }.by(-50)
     end
-    it('Updates the credit variable to equal the amount withdrawn') do
+    it('Updates the debit variable to equal the amount withdrawn') do
       @bank.withdraw(50)
-      expect(@bank.credit).to equal 50
+      expect(@bank.debit).to equal 50
     end
-    it('Updates the credit variable to only the latest amount withdrawn') do
+    it('Updates the debit variable to only the latest amount withdrawn') do
       @bank.withdraw(50)
       @bank.withdraw(20)
-      expect(@bank.credit).to equal 20
+      expect(@bank.debit).to equal 20
     end
-    it('The debit variable is set to 0 after a withdrawal is made') do
+    it('The credit variable is set to 0 after a withdrawal is made') do
       @bank.deposit(10)
       @bank.withdraw(30)
-      expect(@bank.debit).to equal 0
+      expect(@bank.credit).to equal 0
     end
     it('has an associated date, this defaults to today if one is not provided') do
       @bank.withdraw(100)
@@ -84,13 +84,13 @@ describe Bank do
     it('Pushes the latest withdraw or deposit into the history array') do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(100, deposit_date)
-      expect(@bank.history).to eq([{ date: deposit_date, credit: 0, debit: 100, balance: 100 }])
+      expect(@bank.history).to eq([{ date: deposit_date, credit: 100, debit: 0, balance: 100 }])
     end
     it('Pushes a deposit and a withdraw into the history array') do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(100, deposit_date)
       @bank.withdraw(50, deposit_date)
-      expect(@bank.history).to eq([{ date: deposit_date, credit: 0, debit: 100, balance: 100 }, { date: deposit_date, credit: 50, debit: 0, balance: 50 }])
+      expect(@bank.history).to eq([{ date: deposit_date, credit: 100, debit: 0, balance: 100 }, { date: deposit_date, credit: 0, debit: 50, balance: 50 }])
     end
   end
 
@@ -108,14 +108,14 @@ describe Bank do
       @bank.deposit(50, deposit_date)
       expect do
         @bank.print_summary
-      end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || 50.00\n").to_stdout
+      end.to output("date || credit || debit || balance\n 31/12/2021 || 50.00 || || 50.00\n").to_stdout
     end
     it('prints the transaction summary of a single withdrawal') do
       withdraw_date = Date.new(2021, 12, 31)
       @bank.withdraw(50, withdraw_date)
       expect do
         @bank.print_summary
-      end.to output("date || credit || debit || balance\n 31/12/2021 || 50.00 || || -50.00\n").to_stdout
+      end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || -50.00\n").to_stdout
     end
     it('prints the transaction summary of a two transactions') do
       deposit_date = Date.new(2021, 12, 30)
@@ -126,7 +126,7 @@ describe Bank do
 
       expect do
         @bank.print_summary
-      end.to output("date || credit || debit || balance\n 30/12/2021 || || 100.00 || 100.00\n 31/12/2021 || 50.00 || || 50.00\n").to_stdout
+      end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || 50.00\n 30/12/2021 || 100.00 || || 100.00\n").to_stdout
     end
     it('prints the transaction summary of a multiple transactions in order of newest to oldest') do
       deposit_date = Date.new(2023, 1, 10)
