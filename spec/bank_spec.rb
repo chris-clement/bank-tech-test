@@ -103,12 +103,19 @@ describe Bank do
         @bank.print_summary
       end.to output("date || credit || debit || balance\n").to_stdout
     end
-    it('prints the transaction summary of a single transaction') do
+    it('prints the transaction summary of a single deposit') do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(50, deposit_date)
       expect do
         @bank.print_summary
       end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || 50.00\n").to_stdout
+    end
+    it('prints the transaction summary of a single withdrawal') do
+      withdraw_date = Date.new(2021, 12, 31)
+      @bank.withdraw(50, withdraw_date)
+      expect do
+        @bank.print_summary
+      end.to output("date || credit || debit || balance\n 31/12/2021 || 50.00 || || -50.00\n").to_stdout
     end
   end
 end
