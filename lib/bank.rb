@@ -19,9 +19,10 @@ class Bank
     @date = date
   end
 
-  def withdraw(amount)
+  def withdraw(amount, date = Date.today())
     @balance -= amount
     @debit = 0
     @credit = amount
+    @date = date
   end
 end

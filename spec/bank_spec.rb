@@ -66,5 +66,11 @@ describe Bank do
       @bank.withdraw(30)
       expect(@bank.debit).to equal 0
     end
+    it('has an associated date, this defaults to today if one is not provided') do
+      @bank.withdraw(100)
+      expect(@bank.date.day).to equal Date.today.day
+      expect(@bank.date.month).to equal Date.today.month
+      expect(@bank.date.year).to equal Date.today.year
+    end
   end
 end
