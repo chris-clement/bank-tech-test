@@ -53,7 +53,7 @@ Click an emoji to tell us.
 2. Add a debit variable which will be updated when a deposit is made. :white_check_mark:
 3. Add a withdrawal method. :white_check_mark:
 4. Add a credit variable. This will update once a withdrawal is made. :white_check_mark:
-5. Add a date element. So deposits and withdrawals are made on a certain date.
+5. Add a date element. So deposits and withdrawals are made on a certain date. :white_check_mark:
 6. make a array of hashes to store this information. So every time a withdrawal or deposit is made this is stored. 
 7. Add a print_account_summary method to display the history.
 
