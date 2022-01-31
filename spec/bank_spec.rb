@@ -14,7 +14,7 @@ describe Bank do
     it('Is a method within the Bank class') do
       expect(@bank).to respond_to :deposit
     end
-    it('Changes the balance by the amount deposited') do
+    it('Increases the balance by the amount deposited') do
       expect { @bank.deposit(50) }.to change { @bank.balance }.by 50
     end
     it('Updates the debit variable to equal the amount desposited') do
@@ -31,6 +31,9 @@ describe Bank do
   describe('#withdraw') do
     it('Is a method within the Bank class') do
       expect(@bank).to respond_to :withdraw
+    end
+    it('Reduces the balance by the amount withdrawn') do
+      expect { @bank.withdraw(50) }.to change { @bank.balance }.by -50
     end
   end
 end
