@@ -27,4 +27,10 @@ describe Bank do
       expect(@bank.debit).to equal 20
     end
   end
+
+  describe('#withdraw') do
+    it('Is a method within the Bank class') do
+      expect(@bank).to respond_to :withdraw
+    end
+  end
 end
