@@ -33,7 +33,11 @@ describe Bank do
       expect(@bank).to respond_to :withdraw
     end
     it('Reduces the balance by the amount withdrawn') do
-      expect { @bank.withdraw(50) }.to change { @bank.balance }.by -50
+      expect { @bank.withdraw(50) }.to change { @bank.balance }.by(-50)
+    end
+    it('Updates the credit variable to equal the amount withdrawn') do
+      @bank.withdraw(50)
+      expect(@bank.credit).to equal 50
     end
   end
 end
