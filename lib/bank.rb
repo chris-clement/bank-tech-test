@@ -29,6 +29,10 @@ class Bank
     add_to_history
   end
 
+  def print_summary
+
+  end
+
   private 
 
   def add_to_history

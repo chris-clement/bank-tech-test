@@ -93,4 +93,10 @@ describe Bank do
       expect(@bank.history).to eq([{date: deposit_date , credit: 0, debit: 100, balance: 100}, {date: deposit_date , credit: 50, debit: 0, balance: 50}])
     end
   end
+
+  describe '#print_summary' do
+    it('Is a method within the Bank class') do
+      expect(@bank).to respond_to :print_summary
+    end
+  end
 end
