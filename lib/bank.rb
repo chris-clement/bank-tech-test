@@ -42,7 +42,7 @@ class Bank
   end
 
   def print_summary
-    @history.sort_by! {|transaction| transaction[:date]}.reverse!
+    sort_transaction_history
     puts 'date || credit || debit || balance'
     for i in 0..(@history.length - 1)
       if @history[i][:credit] == 0
@@ -61,5 +61,9 @@ class Bank
 
   def date_valid?(date)
     date.instance_of?(Date)
+  end
+
+  def sort_transaction_history
+    @history.sort_by! {|transaction| transaction[:date]}.reverse!
   end
 end
