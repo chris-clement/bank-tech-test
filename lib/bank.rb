@@ -15,21 +15,22 @@ class Bank
 
   def deposit(amount, date = Date.today())
     @balance += amount
-    @credit = 0
-    @debit = amount
-    @date = date
-    add_to_history
-  end
-
-  def withdraw(amount, date = Date.today())
-    @balance -= amount
     @debit = 0
     @credit = amount
     @date = date
     add_to_history
   end
 
+  def withdraw(amount, date = Date.today())
+    @balance -= amount
+    @credit = 0
+    @debit = amount
+    @date = date
+    add_to_history
+  end
+
   def print_summary
+    @history.sort_by! {|transaction| transaction[:date]}.reverse!
     puts 'date || credit || debit || balance'
     for i in 0..(@history.length - 1)
       if @history[i][:credit] == 0
