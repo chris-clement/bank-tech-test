@@ -79,4 +79,13 @@ describe Bank do
       expect(@bank.date.year).to equal 2021
     end
   end
+
+  describe '#add_to_history' do
+    it("Pushes the latest withdraw or deposit into the history array") do
+      deposit_date = Date.new(2021, 12, 31)
+      @bank.deposit(100, deposit_date)
+      @bank.add_to_history
+      expect(@bank.history).to eq([{date: deposit_date , credit: 0, debit: 100, balance: 100}])
+    end
+  end
 end
