@@ -21,5 +21,10 @@ describe Bank do
       @bank.deposit(50)
       expect(@bank.debit).to equal 50
     end
+    it('Updates the debit variable to only the latest amount desposited') do
+      @bank.deposit(50)
+      @bank.deposit(20)
+      expect(@bank.debit).to equal 20
+    end
   end
 end
