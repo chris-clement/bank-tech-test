@@ -31,10 +31,12 @@ class Bank
 
   def print_summary
     puts 'date || credit || debit || balance'
-    if @credit == 0
-      puts " #{@date.strftime('%d/%m/%Y')} || || #{sprintf('%.2f', @debit)} || #{sprintf('%.2f', @balance)}" unless @date.nil?
+    if @date.nil?
+      # puts nothing
+    elsif @credit == 0
+      puts " #{@date.strftime('%d/%m/%Y')} || || #{sprintf('%.2f', @debit)} || #{sprintf('%.2f', @balance)}"
     else
-      puts " #{@date.strftime('%d/%m/%Y')} || #{sprintf('%.2f', @credit)} || || #{sprintf('%.2f', @balance)}" unless @date.nil?
+      puts " #{@date.strftime('%d/%m/%Y')} || #{sprintf('%.2f', @credit)} || || #{sprintf('%.2f', @balance)}"
     end
   end
 
