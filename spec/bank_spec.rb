@@ -31,6 +31,12 @@ describe Bank do
       @bank.deposit(10)
       expect(@bank.credit).to equal 0
     end
+    it('Deposits have an associated date, this defaults to today if one is not provided') do
+      @bank.deposit(100)
+      expect(@bank.date.day).to equal Date.today.day
+      expect(@bank.date.month).to equal Date.today.month
+      expect(@bank.date.year).to equal Date.today.year
+    end
   end
 
   describe('#withdraw') do
