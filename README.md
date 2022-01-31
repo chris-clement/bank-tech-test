@@ -150,7 +150,7 @@ date || credit || debit || balance
 
 Once you have completed the challenge and feel happy with your solution, here's a form to help you reflect on the quality of your code: https://docs.google.com/forms/d/1Q-NnqVObbGLDHxlvbUfeAC7yBCf3eCjTmz6GOqC9Aeo/edit
 
-# Planning
+## Planning
 
 1. Set up deposit method. This will include a balance variable. Not date to begin with. :white_check_mark:
 2. Add a debit variable which will be updated when a deposit is made. :white_check_mark:
@@ -160,7 +160,7 @@ Once you have completed the challenge and feel happy with your solution, here's 
 6. make a array of hashes to store this information. So every time a withdrawal or deposit is made this is stored. :white_check_mark:
 7. Add a print_account_summary method to display the history. :white_check_mark:
 
-# Classes and Method names.
+### Classes and Method names.
 
 - Class Bank.
 - Methods: deposit, withdraw, print_account_summary, add_to_history.
@@ -170,7 +170,7 @@ Once you have completed the challenge and feel happy with your solution, here's 
 - Sorting the array of hashes seems straight forward using
 array.sort_by! { |transaction| transaction["date"]}.
 
-# Edge Cases to consider
+### Edge Cases to consider
 
 - withdraw with non-positive number => Error Thrown :white_check_mark:
 - deposit with non-positive number => Error Thrown :white_check_mark:
