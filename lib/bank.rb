@@ -14,35 +14,21 @@ class Bank
   end
 
   def deposit(amount, date = Date.today())
-    if !amount.is_a? Integer
-      raise 'That amount is not recognised as a value, please try again.'
-    elsif !date_valid?(date)
-      raise 'That date is not recognised, please try again.'
-    elsif amount <= 0
-      raise 'Cannot deposit a non-positive amount, did you mean to withdraw?'
-    else
-      @balance += amount
-      @debit = 0
-      @credit = amount
-      @date = date
-      add_to_history
-    end
+    check_for_amount_and_date_errors(amount,date)
+    @balance += amount
+    @debit = 0
+    @credit = amount
+    @date = date
+    add_to_history
   end
 
   def withdraw(amount, date = Date.today())
-    if !amount.is_a? Integer
-      raise 'That amount is not recognised as a value, please try again.'
-    elsif !date_valid?(date)
-      raise 'That date is not recognised, please try again.'
-    elsif amount <= 0
-      raise'Cannot withdraw a non-positive amount, did you mean to deposit'
-    else
-      @balance -= amount
-      @credit = 0
-      @debit = amount
-      @date = date
-      add_to_history
-    end
+    check_for_amount_and_date_errors(amount,date)
+    @balance -= amount
+    @credit = 0
+    @debit = amount
+    @date = date
+    add_to_history
   end
 
   def print_summary
@@ -68,10 +54,20 @@ class Bank
   end
 
   def sort_transaction_history
-    @history.sort_by! {|transaction| transaction[:date]}.reverse!
+    @history.sort_by! { |transaction| transaction[:date] }.reverse!
   end
 
   def debit_transaction?(history_index)
     @history[history_index][:credit] == 0
+  end
+
+  def check_for_amount_and_date_errors(amount, date)
+    if !amount.is_a? Integer
+      raise 'That amount is not recognised as a value, please try again.'
+    elsif !date_valid?(date)
+      raise 'That date is not recognised, please try again.'
+    elsif amount <= 0
+      raise 'Cannot withdraw/deposit a non-positive amount.'
+    end
   end
 end

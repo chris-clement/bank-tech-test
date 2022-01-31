@@ -44,13 +44,13 @@ describe Bank do
       expect(@bank.date.year).to equal 2021
     end
     it('Throws an error if you deposit a non-positive integer') do
-      expect { @bank.deposit(-20) }.to raise_error 'Cannot deposit a non-positive amount, did you mean to withdraw?'
+      expect { @bank.deposit(-20) }.to raise_error 'Cannot withdraw/deposit a non-positive amount.'
     end
     it('Throws an error if you enter a date which is not a date') do
-      expect { @bank.deposit(50, "31/02/2021") }.to raise_error 'That date is not recognised, please try again.'
+      expect { @bank.deposit(50, '31/02/2021') }.to raise_error 'That date is not recognised, please try again.'
     end
     it('Throws an error if you enter a amount which is not a integer') do
-      expect { @bank.deposit("six") }.to raise_error 'That amount is not recognised as a value, please try again.'
+      expect { @bank.deposit('six') }.to raise_error 'That amount is not recognised as a value, please try again.'
     end
   end
 
@@ -88,13 +88,13 @@ describe Bank do
       expect(@bank.date.year).to equal 2021
     end
     it('Throws an error if you withdraw a non-positive integer') do
-      expect { @bank.withdraw(-20) }.to raise_error 'Cannot withdraw a non-positive amount, did you mean to deposit'
+      expect { @bank.withdraw(-20) }.to raise_error 'Cannot withdraw/deposit a non-positive amount.'
     end
     it('Throws an error if you enter a date which is not a date') do
-      expect { @bank.withdraw(50, "31/02/2021") }.to raise_error 'That date is not recognised, please try again.'
+      expect { @bank.withdraw(50, '31/02/2021') }.to raise_error 'That date is not recognised, please try again.'
     end
     it('Throws an error if you enter a amount which is not a integer') do
-      expect { @bank.withdraw("six") }.to raise_error 'That amount is not recognised as a value, please try again.'
+      expect { @bank.withdraw('six') }.to raise_error 'That amount is not recognised as a value, please try again.'
     end
   end
 
@@ -152,7 +152,7 @@ describe Bank do
 
       deposit_date2 = Date.new(2023, 1, 13)
       @bank.deposit(2000, deposit_date2)
-      
+
       withdraw_date = Date.new(2023, 1, 14)
       @bank.withdraw(500, withdraw_date)
 
