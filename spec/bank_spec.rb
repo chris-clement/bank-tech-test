@@ -15,7 +15,6 @@ describe Bank do
       expect(@bank).to respond_to :deposit
     end
     it('Changes the balance by the amount deposited') do
-      # @bank.deposit(50)
       expect { @bank.deposit(50) }.to change { @bank.balance }.by 50
     end
     it('Updates the debit variable to equal the amount desposited') do
