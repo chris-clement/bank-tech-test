@@ -87,5 +87,13 @@ describe Bank do
       @bank.add_to_history
       expect(@bank.history).to eq([{date: deposit_date , credit: 0, debit: 100, balance: 100}])
     end
+    it("Pushes a deposit and a withdraw into the history array") do
+      deposit_date = Date.new(2021, 12, 31)
+      @bank.deposit(100, deposit_date)
+      @bank.add_to_history
+      @bank.withdraw(50, deposit_date)
+      @bank.add_to_history
+      expect(@bank.history).to eq([{date: deposit_date , credit: 0, debit: 100, balance: 100}, {date: deposit_date , credit: 50, debit: 0, balance: 50}])
+    end
   end
 end
