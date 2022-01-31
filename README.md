@@ -55,7 +55,7 @@ Click an emoji to tell us.
 4. Add a credit variable. This will update once a withdrawal is made. :white_check_mark:
 5. Add a date element. So deposits and withdrawals are made on a certain date. :white_check_mark:
 6. make a array of hashes to store this information. So every time a withdrawal or deposit is made this is stored. :white_check_mark:
-7. Add a print_account_summary method to display the history.
+7. Add a print_account_summary method to display the history. :white_check_mark:
 
 # Classes and Method names.
 
@@ -73,5 +73,5 @@ array.sort_by! { |transaction| transaction["date"]}.
 - What if deposit is called with a negative integer
 - What if the balance goes below 0, can you withdraw? Assuming yes for now. Overdraft limits could be introduced if needed.
 - What if date is not in right format. 
-- What if date is in the future? Shouldnt be possible. 
+- What if date is in the future? Fine as shown in acceptance criteria. 
 - What if a date is not given? Default value perhaps.
