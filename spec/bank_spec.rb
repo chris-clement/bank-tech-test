@@ -43,6 +43,9 @@ describe Bank do
       expect(@bank.date.month).to equal 7
       expect(@bank.date.year).to equal 2021
     end
+    it('Throws an error if you deposit a non-positive integer') do
+      expect { @bank.deposit(-20) }.to raise_error 'Cannot deposit a non-positive amount, did you mean to withdraw?'
+    end
   end
 
   describe('#withdraw') do

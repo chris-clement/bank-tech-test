@@ -14,11 +14,15 @@ class Bank
   end
 
   def deposit(amount, date = Date.today())
-    @balance += amount
-    @debit = 0
-    @credit = amount
-    @date = date
-    add_to_history
+    if amount <= 0
+      raise 'Cannot deposit a non-positive amount, did you mean to withdraw?'
+    else
+      @balance += amount
+      @debit = 0
+      @credit = amount
+      @date = date
+      add_to_history
+    end
   end
 
   def withdraw(amount, date = Date.today())
