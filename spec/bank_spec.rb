@@ -117,5 +117,16 @@ describe Bank do
         @bank.print_summary
       end.to output("date || credit || debit || balance\n 31/12/2021 || 50.00 || || -50.00\n").to_stdout
     end
+    it('prints the transaction summary of a two transactions') do
+      deposit_date = Date.new(2021, 12, 30)
+      @bank.deposit(100, deposit_date)
+
+      withdraw_date = Date.new(2021, 12, 31)
+      @bank.withdraw(50, withdraw_date)
+
+      expect do
+        @bank.print_summary
+      end.to output("date || credit || debit || balance\n 30/12/2021 || || 100.00 || 100.00\n 31/12/2021 || 50.00 || || 50.00\n").to_stdout
+    end
   end
 end
