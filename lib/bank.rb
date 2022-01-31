@@ -30,15 +30,13 @@ class Bank
   end
 
   def print_summary
-    puts "date || credit || debit || balance"
-    if @date != nil
-      puts " #{@date.strftime("%d/%m/%Y")} || || #{sprintf("%.2f", @debit)} || #{sprintf("%.2f", @balance)}"
-    end
+    puts 'date || credit || debit || balance'
+    puts " #{@date.strftime('%d/%m/%Y')} || || #{sprintf('%.2f', @debit)} || #{sprintf('%.2f', @balance)}" unless @date.nil?
   end
 
-  private 
+  private
 
   def add_to_history
-    history << {date: @date, credit: @credit, debit: @debit, balance: @balance }
+    history << { date: @date, credit: @credit, debit: @debit, balance: @balance }
   end
 end

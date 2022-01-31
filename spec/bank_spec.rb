@@ -81,16 +81,16 @@ describe Bank do
   end
 
   describe '#add_to_history' do
-    it("Pushes the latest withdraw or deposit into the history array") do
+    it('Pushes the latest withdraw or deposit into the history array') do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(100, deposit_date)
-      expect(@bank.history).to eq([{date: deposit_date , credit: 0, debit: 100, balance: 100}])
+      expect(@bank.history).to eq([{ date: deposit_date, credit: 0, debit: 100, balance: 100 }])
     end
-    it("Pushes a deposit and a withdraw into the history array") do
+    it('Pushes a deposit and a withdraw into the history array') do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(100, deposit_date)
       @bank.withdraw(50, deposit_date)
-      expect(@bank.history).to eq([{date: deposit_date , credit: 0, debit: 100, balance: 100}, {date: deposit_date , credit: 50, debit: 0, balance: 50}])
+      expect(@bank.history).to eq([{ date: deposit_date, credit: 0, debit: 100, balance: 100 }, { date: deposit_date, credit: 50, debit: 0, balance: 50 }])
     end
   end
 
@@ -101,14 +101,14 @@ describe Bank do
     it('prints the headers for the transaction summary') do
       expect do
         @bank.print_summary
-      end.to output("date || credit || debit || balance\n").to_stdout
+      end.to output('date || credit || debit || balance\n').to_stdout
     end
     it('prints the transaction summary of a single transaction') do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(50, deposit_date)
       expect do
         @bank.print_summary
-      end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || 50.00\n").to_stdout
+      end.to output('date || credit || debit || balance\n 31/12/2021 || || 50.00 || 50.00\n').to_stdout
     end
   end
 end
