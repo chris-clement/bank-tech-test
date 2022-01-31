@@ -46,6 +46,9 @@ describe Bank do
     it('Throws an error if you deposit a non-positive integer') do
       expect { @bank.deposit(-20) }.to raise_error 'Cannot deposit a non-positive amount, did you mean to withdraw?'
     end
+    it('Throws an error if you enter a date which is not a date') do
+      expect { @bank.deposit(50, "31/02/2021") }.to raise_error 'That date is not recognised, please try again.'
+    end
   end
 
   describe('#withdraw') do
@@ -83,6 +86,9 @@ describe Bank do
     end
     it('Throws an error if you withdraw a non-positive integer') do
       expect { @bank.withdraw(-20) }.to raise_error 'Cannot withdraw a non-positive amount, did you mean to deposit'
+    end
+    it('Throws an error if you enter a date which is not a date') do
+      expect { @bank.withdraw(50, "31/02/2021") }.to raise_error 'That date is not recognised, please try again.'
     end
   end
 

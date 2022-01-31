@@ -14,7 +14,9 @@ class Bank
   end
 
   def deposit(amount, date = Date.today())
-    if amount <= 0
+    if !date.instance_of?(Date)
+      raise 'That date is not recognised, please try again.'
+    elsif amount <= 0
       raise 'Cannot deposit a non-positive amount, did you mean to withdraw?'
     else
       @balance += amount
@@ -26,7 +28,9 @@ class Bank
   end
 
   def withdraw(amount, date = Date.today())
-    if amount <= 0
+    if !date.instance_of?(Date)
+      raise 'That date is not recognised, please try again.'
+    elsif amount <= 0
       raise'Cannot withdraw a non-positive amount, did you mean to deposit'
     else
       @balance -= amount
