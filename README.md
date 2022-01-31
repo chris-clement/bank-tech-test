@@ -76,5 +76,5 @@ array.sort_by! { |transaction| transaction["date"]}.
 - Date is in the future => Fine as shown in acceptance criteria. :white_check_mark:
 - Date is not given => Default value of today is used :white_check_mark:
 - print_summary is called before any deposits/withdrawals take place => Just the headers are printed :white_check_mark:
-- deposit a non-integer => Error Thrown
-- withdraw a non-integer => Error Thrown
+- deposit a non-integer => Error Thrown :white_check_mark:
+- withdraw a non-integer => Error Thrown :white_check_mark:
