@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 # gem "rails"
 
-gem "rspec", "~> 3.10"
+gem 'rspec', '~> 3.10'
 
-gem "simplecov", "~> 0.21.2"
+gem 'simplecov', '~> 0.21.2'
+
+gem 'rubocop', '~> 1.25'

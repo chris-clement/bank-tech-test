@@ -1,5 +1,8 @@
-class Bank
+# frozen_string_literal: true
 
+# Used for all of the methods required by this task.
+
+class Bank
   attr_reader :balance
 
   def initialize
@@ -9,5 +12,4 @@ class Bank
   def deposit(amount)
     @balance += amount
   end
-
 end
