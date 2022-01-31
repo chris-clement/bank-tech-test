@@ -54,7 +54,7 @@ Click an emoji to tell us.
 3. Add a withdrawal method. :white_check_mark:
 4. Add a credit variable. This will update once a withdrawal is made. :white_check_mark:
 5. Add a date element. So deposits and withdrawals are made on a certain date. :white_check_mark:
-6. make a array of hashes to store this information. So every time a withdrawal or deposit is made this is stored. 
+6. make a array of hashes to store this information. So every time a withdrawal or deposit is made this is stored. :white_check_mark:
 7. Add a print_account_summary method to display the history.
 
 # Classes and Method names.
