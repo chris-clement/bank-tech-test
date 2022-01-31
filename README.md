@@ -4,9 +4,10 @@
 
 A simple Bank tech app to be used within irb to create a bank account, deposit amounts, withdraw amounts and get a transaction summary printed to the console.
 
-### Built with
+### Tech stack used
 
 - Ruby
+- Rspec for testing. (100% Coverage using simplecov)
 
 ### How to run
 
@@ -120,7 +121,6 @@ date || credit || debit || balance
  ```   
 
  This displays the date of the transaction, whether it was a Credit (Income i.e. Money coming into the account) or Debit (Expense i.e. Money coming out of the account), and the balance on the account.
-
 
 ## Specification
 
