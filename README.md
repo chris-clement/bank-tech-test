@@ -1,12 +1,126 @@
 # Bank tech test
 
-Today, you'll practice doing a tech test.
+### What this is?
 
-For most tech tests, you'll essentially have unlimited time.  This practice session is about producing the best code you can when there is a minimal time pressure.
+A simple Bank tech app to be used within irb to create a bank account, deposit amounts, withdraw amounts and get a transaction summary printed to the console.
 
-You'll get to practice your OO design and TDD skills.
+### Built with
 
-You'll work alone, and you'll also review your own code so you can practice reflecting on and improving your own work.
+- Ruby
+
+### How to run
+
+```
+git clone https://github.com/chris-clement/bank-tech-test.git
+cd bank-tech-test
+bundle install
+irb -r "./lib/bank.rb"
+require 'date'
+```
+
+### How to use
+
+Open a new account using bank = Bank.new
+
+```
+bank = Bank.new
+3.0.0 :001 > bank = Bank.new
+ => #<Bank:0x0000000... 
+3.0.0 :002 > bank
+ => 
+#<Bank:0x000000014417b368 
+ @balance=0,              
+ @credit=0,               
+ @debit=0,                
+ @history=[]> 
+```
+Make a deposit using bank.deposit() with the amount and date entered.
+
+```
+bank.deposit(50, Date.new(
+2021,12,31))
+ => 
+[{:date=>                              
+   #<Date: 2021-12-31 ((2459580j,0s,0n),+0s,2299161j)>,                       
+  :credit=>50,                         
+  :debit=>0,                           
+  :balance=>50}]                       
+```
+By default if no date is provided today's date is used.
+
+```
+bank.deposit(100)
+ => 
+[{:date=>                              
+   #<Date: 2021-12-31 ((2459580j,0s,0n),+0s,2299161j)>,                       
+  :credit=>50,                         
+  :debit=>0,                           
+  :balance=>50},                       
+ {:date=>                              
+   #<Date: 2022-01-31 ((2459611j,0s,0n),+0s,2299161j)>,                       
+  :credit=>100,                        
+  :debit=>0,                           
+  :balance=>150}]                      
+```
+
+Use bank.withdraw() to make a withdrawal for an amount and date.
+```
+bank.withdraw(70, Date.new
+(2022,2,1))
+ => 
+[{:date=>                              
+   #<Date: 2021-12-31 ((2459580j,0s,0n),+0s,2299161j)>,                       
+  :credit=>50,                         
+  :debit=>0,                           
+  :balance=>50},                       
+ {:date=>                              
+   #<Date: 2022-01-31 ((2459611j,0s,0n),+0s,2299161j)>,                       
+  :credit=>100,                        
+  :debit=>0,                           
+  :balance=>150},                      
+ {:date=>                              
+   #<Date: 2022-02-01 ((2459612j,0s,0n),+0s,2299161j)>,
+  :credit=>0,
+  :debit=>70,
+  :balance=>80}] 
+```
+By default if no date is provided today's date is used.
+```
+bank.withdraw(15)
+ => 
+[{:date=>                              
+   #<Date: 2021-12-31 ((2459580j,0s,0n),+0s,2299161j)>,                       
+  :credit=>50,                         
+  :debit=>0,                           
+  :balance=>50},                       
+ {:date=>                              
+   #<Date: 2022-01-31 ((2459611j,0s,0n),+0s,2299161j)>,                       
+  :credit=>100,                        
+  :debit=>0,                           
+  :balance=>150},                      
+ {:date=>                              
+   #<Date: 2022-02-01 ((2459612j,0s,0n),+0s,2299161j)>,
+  :credit=>0,
+  :debit=>70,
+  :balance=>80},
+ {:date=>
+   #<Date: 2022-01-31 ((2459611j,0s,0n),+0s,2299161j)>,
+  :credit=>0,
+  :debit=>15,
+  :balance=>65}] 
+```
+Use bank.print_summary to print to the console a history of transaction sorted by new to old.
+```
+bank.print_summary
+date || credit || debit || balance
+ 01/02/2022 || || 70.00 || 80.00       
+ 31/01/2022 || || 15.00 || 65.00       
+ 31/01/2022 || 100.00 || || 150.00     
+ 31/12/2021 || 50.00 || || 50.00       
+ ```   
+
+ This displays the date of the transaction, whether it was a Credit (Income i.e. Money coming into the account) or Debit (Expense i.e. Money coming out of the account), and the balance on the account.
+
 
 ## Specification
 
@@ -35,17 +149,6 @@ date || credit || debit || balance
 ## Self-assessment
 
 Once you have completed the challenge and feel happy with your solution, here's a form to help you reflect on the quality of your code: https://docs.google.com/forms/d/1Q-NnqVObbGLDHxlvbUfeAC7yBCf3eCjTmz6GOqC9Aeo/edit
-
-<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
-
----
-
-**How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😀)  
-Click an emoji to tell us.
-
-<!-- END GENERATED SECTION DO NOT EDIT -->
-
 
 # Planning
 
