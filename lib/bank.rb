@@ -26,11 +26,15 @@ class Bank
   end
 
   def withdraw(amount, date = Date.today())
-    @balance -= amount
-    @credit = 0
-    @debit = amount
-    @date = date
-    add_to_history
+    if amount <= 0
+      raise'Cannot withdraw a non-positive amount, did you mean to deposit'
+    else
+      @balance -= amount
+      @credit = 0
+      @debit = amount
+      @date = date
+      add_to_history
+    end
   end
 
   def print_summary
