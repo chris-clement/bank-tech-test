@@ -45,7 +45,7 @@ class Bank
     sort_transaction_history
     puts 'date || credit || debit || balance'
     for i in 0..(@history.length - 1)
-      if @history[i][:credit] == 0
+      if debit_transaction?(i)
         puts " #{@history[i][:date].strftime('%d/%m/%Y')} || || #{sprintf('%.2f', @history[i][:debit])} || #{sprintf('%.2f', @history[i][:balance])}"
       else
         puts " #{@history[i][:date].strftime('%d/%m/%Y')} || #{sprintf('%.2f', @history[i][:credit])} || || #{sprintf('%.2f', @history[i][:balance])}"
@@ -65,5 +65,9 @@ class Bank
 
   def sort_transaction_history
     @history.sort_by! {|transaction| transaction[:date]}.reverse!
+  end
+
+  def debit_transaction?(history_index)
+    @history[history_index][:credit] == 0
   end
 end
