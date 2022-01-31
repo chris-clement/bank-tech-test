@@ -37,6 +37,12 @@ describe Bank do
       expect(@bank.date.month).to equal Date.today.month
       expect(@bank.date.year).to equal Date.today.year
     end
+    it('Deposits have an associated date') do
+      @bank.deposit(100, Date.new(2021, 07, 06))
+      expect(@bank.date.day).to equal 6
+      expect(@bank.date.month).to equal 7
+      expect(@bank.date.year).to equal 2021
+    end
   end
 
   describe('#withdraw') do
