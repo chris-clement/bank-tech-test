@@ -13,6 +13,7 @@ class Bank
 
   def deposit(amount)
     @balance += amount
+    @credit = 0
     @debit = amount
   end
 
