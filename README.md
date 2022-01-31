@@ -45,3 +45,32 @@ Once you have completed the challenge and feel happy with your solution, here's 
 Click an emoji to tell us.
 
 <!-- END GENERATED SECTION DO NOT EDIT -->
+
+
+# Planning
+
+1. Set up deposit method. This will include a balance variable. Not date to begin with. 
+2. Add a debit variable which will be updated when a deposit is made.
+3. Add a date element. So deposit made on a given date.
+4. Add a withdrawal method. Make this with a date too. 
+5. Add a credit variable. This will update once a withdrawal is made.
+6. make a array of hashes to store this information. So every time a withdrawal or deposit is made this is stored. 
+7. Add a print_account_summary method to display the history.
+
+# Classes and Method names.
+
+- Class Bank.
+- Methods: deposit, withdraw, print_account_summary, add_to_history.
+- Variables: balance(integer), date(date), credit(integer), debit(integer),history (array of hashes)
+- How to store this info? Array of hashes for the history e.g. 
+[{date: 28/01/2022, balance: 2500, credit: 0, debit: 500}, {date: 31/01/2022, balance: 3500, credit: 0, debit: 1000}]
+- Sorting the array of hashes seems straight forward using
+array.sort_by! { |transaction| transaction["date"]}.
+
+# Edge Cases to consider
+
+- What if withdrawal is called with a negative integer
+- What if deposit is called with a negative integer
+- What if the balance goes below 0, can you withdraw? Assuming yes for now. Overdraft limits could be introduced if needed.
+- What if date is not in right format. 
+- What if date is in the future? Shouldnt be possible. 
