@@ -19,6 +19,7 @@ class Bank
 
   def withdraw(amount)
     @balance -= amount
+    @debit = 0
     @credit = amount
   end
 end

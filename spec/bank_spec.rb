@@ -49,5 +49,10 @@ describe Bank do
       @bank.withdraw(20)
       expect(@bank.credit).to equal 20
     end
+    it('The debit variable is set to 0 after a withdrawal is made') do
+      @bank.deposit(10)
+      @bank.withdraw(30)
+      expect(@bank.debit).to equal 0
+    end
   end
 end
