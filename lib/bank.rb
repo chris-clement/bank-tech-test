@@ -30,7 +30,7 @@ class Bank
   end
 
   def print_summary
-
+    puts "date || credit || debit || balance"
   end
 
   private 

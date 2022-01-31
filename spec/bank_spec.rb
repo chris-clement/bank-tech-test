@@ -98,5 +98,10 @@ describe Bank do
     it('Is a method within the Bank class') do
       expect(@bank).to respond_to :print_summary
     end
+    it('prints the headers for the transaction summary') do
+      expect do
+        @bank.print_summary
+      end.to output("date || credit || debit || balance\n").to_stdout
+    end
   end
 end
