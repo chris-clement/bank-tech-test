@@ -11,5 +11,10 @@ describe Bank do
       bank = Bank.new()
       expect(bank).to respond_to :deposit
     end
+    it("Changes the balance by the amount deposited") do
+      bank = Bank.new()
+      bank.deposit(50)
+      expect{ bank.deposit(50) }.to change { bank.balance }.by 50
+    end
   end
 end
