@@ -14,7 +14,7 @@ class Bank
   end
 
   def deposit(amount, date = Date.today())
-    if !date.instance_of?(Date)
+    if !date_valid?(date)
       raise 'That date is not recognised, please try again.'
     elsif amount <= 0
       raise 'Cannot deposit a non-positive amount, did you mean to withdraw?'
@@ -28,7 +28,7 @@ class Bank
   end
 
   def withdraw(amount, date = Date.today())
-    if !date.instance_of?(Date)
+    if !date_valid?(date)
       raise 'That date is not recognised, please try again.'
     elsif amount <= 0
       raise'Cannot withdraw a non-positive amount, did you mean to deposit'
@@ -57,5 +57,9 @@ class Bank
 
   def add_to_history
     history << { date: @date, credit: @credit, debit: @debit, balance: @balance }
+  end
+
+  def date_valid?(date)
+    date.instance_of?(Date)
   end
 end
