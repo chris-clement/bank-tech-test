@@ -31,17 +31,18 @@ describe BankAccountDisplay do
         @bank_account_display.print_summary(history)
       end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || -50.00\n").to_stdout
     end
-    # it('prints the transaction summary of a two transactions') do
-    #   deposit_date = Date.new(2021, 12, 30)
-    #   @bank.deposit(100, deposit_date)
-
-    #   withdraw_date = Date.new(2021, 12, 31)
-    #   @bank.withdraw(50, withdraw_date)
-
-    #   expect do
-    #     @bank_account_display.print_summary
-    #   end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || 50.00\n 30/12/2021 || 100.00 || || 100.00\n").to_stdout
-    # end
+    it('prints the transaction summary of a two transactions') do
+      deposit_date = Date.new(2021, 12, 30)
+      # @bank.deposit(100, deposit_date)
+      withdraw_date = Date.new(2021, 12, 31)
+      # @bank.withdraw(50, withdraw_date)
+      history = [{ date: deposit_date, credit: 100, debit: 0, balance: 100 }, 
+                 { date: withdraw_date, credit: 0, debit: 50, balance: 50}
+                ]
+      expect do
+        @bank_account_display.print_summary(history)
+      end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || 50.00\n 30/12/2021 || 100.00 || || 100.00\n").to_stdout
+    end
     # it('prints the transaction summary of a multiple transactions in order of newest to oldest') do
     #   deposit_date = Date.new(2023, 1, 10)
     #   @bank.deposit(1000, deposit_date)

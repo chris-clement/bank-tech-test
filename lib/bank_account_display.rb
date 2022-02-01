@@ -1,7 +1,7 @@
 class BankAccountDisplay
 
   def print_summary(history)
-    # sort_transaction_history
+    sort_transaction_history(history)
     puts 'date || credit || debit || balance'
     history.each do |transaction|
       if debit_transaction?(transaction)
