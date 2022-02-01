@@ -137,7 +137,10 @@ describe Bank do
 
       expect do
         @bank.bank_account_display.print_summary(history)
-      end.to output("date".center(@column_spacing) + "||" + "credit".center(@column_spacing) + "||" + "debit".center(@column_spacing) + "||" + "balance".center(@column_spacing) +"\n" + "14/01/2023".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" +  "500.00".center(@column_spacing) + "||" + "2500.00".center(@column_spacing) + "\n" + "13/01/2023".center(@column_spacing) + "||" + "2000.00".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" + "3000.00".center(@column_spacing) + "\n" + "10/01/2023".center(@column_spacing) + "||" +  "1000.00".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" +  "1000.00".center(@column_spacing) + "\n").to_stdout
+      end.to output("date".center(@column_spacing) + "||" + "credit".center(@column_spacing) + "||" + "debit".center(@column_spacing) + "||" + "balance".center(@column_spacing) +"\n" + 
+                    "14/01/2023".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" +  "500.00".center(@column_spacing) + "||" + "2500.00".center(@column_spacing) + "\n" + 
+                    "13/01/2023".center(@column_spacing) + "||" + "2000.00".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" + "3000.00".center(@column_spacing) + "\n" + 
+                    "10/01/2023".center(@column_spacing) + "||" +  "1000.00".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" +  "1000.00".center(@column_spacing) + "\n").to_stdout
     end
   end
 end
