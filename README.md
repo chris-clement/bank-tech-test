@@ -30,19 +30,21 @@ bank = Bank.new
 3.0.0 :002 > bank
  => 
 #<Bank:0x000000014417b368 
- @balance=0,              
+ @balance=0,  
+ @bank_account_display=#<BankAccountDisplay:0x000000014b40f618>,
  @credit=0,               
  @debit=0,                
  @history=[]> 
 ```
 Make a deposit using bank.deposit() with the amount and date entered.
+Please enter the date in the below format of Date.new(YYYY, MM, DD)
 
 ```
 bank.deposit(50, Date.new(
 2021,12,31))
  => 
 [{:date=>                              
-   #<Date: 2021-12-31 ((2459580j,0s,0n),+0s,2299161j)>,                       
+   #<Date: 2021-12-31 ((2459580j,0s,0n),+0s,2299161j>,                       
   :credit=>50,                         
   :debit=>0,                           
   :balance=>50}]                       
@@ -159,10 +161,11 @@ Once you have completed the challenge and feel happy with your solution, here's 
 5. Add a date element. So deposits and withdrawals are made on a certain date. :white_check_mark:
 6. make a array of hashes to store this information. So every time a withdrawal or deposit is made this is stored. :white_check_mark:
 7. Add a print_account_summary method to display the history. :white_check_mark:
+8. After doing the self review I decided to split into two classes => Bank and BankDisplayAccount. BankDisplayAccount would handle print_summary, checking whether a transaction was a debit or credit and sorting the history from newest to oldest. Bank handles the deposit, withdraw, validating the data and adding the transaction to a history.
 
 ### Classes and Method names.
 
-- Class Bank.
+- Class Bank, BankDisplayAccount added subsequently.
 - Methods: deposit, withdraw, print_account_summary, add_to_history.
 - Variables: balance(integer), date(date), credit(integer), debit(integer),history (array of hashes)
 - How to store this info? Array of hashes for the history e.g. 
@@ -181,3 +184,4 @@ array.sort_by! { |transaction| transaction["date"]}.
 - print_summary is called before any deposits/withdrawals take place => Just the headers are printed :white_check_mark:
 - deposit a non-integer => Error Thrown :white_check_mark:
 - withdraw a non-integer => Error Thrown :white_check_mark:
+- A user can withdraw and deposit in a random date order => This leads to the balance figure being incorrect. I am assuming these are entered in linear time as would be the case in real life. A truing up logic would need to be implemented if a deposit or withdrawal needed to be added relating to the past. :white_check_mark:
