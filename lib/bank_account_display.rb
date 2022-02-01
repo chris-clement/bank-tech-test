@@ -22,5 +22,4 @@ class BankAccountDisplay
     history.sort_by! { |transaction| transaction[:date] }.reverse!
   end
 
-
 end
