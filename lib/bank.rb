@@ -34,11 +34,11 @@ class Bank
   def print_summary
     sort_transaction_history
     puts 'date || credit || debit || balance'
-    for i in 0..(@history.length - 1)
-      if debit_transaction?(i)
-        puts " #{@history[i][:date].strftime('%d/%m/%Y')} || || #{sprintf('%.2f', @history[i][:debit])} || #{sprintf('%.2f', @history[i][:balance])}"
+    @history.each do |transaction|
+      if debit_transaction?(transaction)
+        puts " #{transaction[:date].strftime('%d/%m/%Y')} || || #{sprintf('%.2f', transaction[:debit])} || #{sprintf('%.2f', transaction[:balance])}"
       else
-        puts " #{@history[i][:date].strftime('%d/%m/%Y')} || #{sprintf('%.2f', @history[i][:credit])} || || #{sprintf('%.2f', @history[i][:balance])}"
+        puts " #{transaction[:date].strftime('%d/%m/%Y')} || #{sprintf('%.2f', transaction[:credit])} || || #{sprintf('%.2f', transaction[:balance])}"
       end
     end
   end
@@ -57,8 +57,8 @@ class Bank
     @history.sort_by! { |transaction| transaction[:date] }.reverse!
   end
 
-  def debit_transaction?(history_index)
-    @history[history_index][:credit] == 0
+  def debit_transaction?(transaction)
+    transaction[:credit] == 0
   end
 
   def check_for_amount_and_date_errors(amount, date)
