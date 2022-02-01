@@ -6,6 +6,7 @@ describe Bank do
   before(:each) do
     @bank = Bank.new
   end
+  
   it('starts with a balance of 0') do
     expect(@bank.balance).to equal 0
   end
@@ -117,52 +118,26 @@ describe Bank do
   end
 
   describe '#print_summary' do
-    it('Is a method within the Bank class') do
-      expect(@bank).to respond_to :print_summary
+    it('Calls on the method in the BankAccountDisplay class') do
+      bank_account_display = double('bank_account_display')
+      allow(bank_account_display).to receive(:print_summary).and_return "date || credit || debit || balance\n 14/01/2023 || || 500.00 || 2500.00\n 13/01/2023 || 2000.00 || || 3000.00\n 10/01/2023 || 1000.00 || || 1000.00\n"
+      
+      deposit_date = Date.new(2023, 1, 10)
+
+      deposit_date2 = Date.new(2023, 1, 13)
+
+      withdraw_date = Date.new(2023, 1, 14)
+      
+      history = [{ date: deposit_date, credit: 1000, debit: 0, balance: 1000 }, 
+      { date: deposit_date2, credit: 2000, debit: 0, balance: 3000 },
+      { date: withdraw_date, credit: 0, debit: 500, balance: 2500 }
+     ]
+
+     @bank.print_summary
+
+      expect do
+        @bank.bank_account_display.print_summary(history)
+      end.to output("date || credit || debit || balance\n 14/01/2023 || || 500.00 || 2500.00\n 13/01/2023 || 2000.00 || || 3000.00\n 10/01/2023 || 1000.00 || || 1000.00\n").to_stdout
     end
-  #   it('prints the headers for the transaction summary') do
-  #     expect do
-  #       @bank.print_summary
-  #     end.to output("date || credit || debit || balance\n").to_stdout
-  #   end
-  #   it('prints the transaction summary of a single deposit') do
-  #     deposit_date = Date.new(2021, 12, 31)
-  #     @bank.deposit(50, deposit_date)
-  #     expect do
-  #       @bank.print_summary
-  #     end.to output("date || credit || debit || balance\n 31/12/2021 || 50.00 || || 50.00\n").to_stdout
-  #   end
-  #   it('prints the transaction summary of a single withdrawal') do
-  #     withdraw_date = Date.new(2021, 12, 31)
-  #     @bank.withdraw(50, withdraw_date)
-  #     expect do
-  #       @bank.print_summary
-  #     end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || -50.00\n").to_stdout
-  #   end
-  #   it('prints the transaction summary of a two transactions') do
-  #     deposit_date = Date.new(2021, 12, 30)
-  #     @bank.deposit(100, deposit_date)
-
-  #     withdraw_date = Date.new(2021, 12, 31)
-  #     @bank.withdraw(50, withdraw_date)
-
-  #     expect do
-  #       @bank.print_summary
-  #     end.to output("date || credit || debit || balance\n 31/12/2021 || || 50.00 || 50.00\n 30/12/2021 || 100.00 || || 100.00\n").to_stdout
-  #   end
-  #   it('prints the transaction summary of a multiple transactions in order of newest to oldest') do
-  #     deposit_date = Date.new(2023, 1, 10)
-  #     @bank.deposit(1000, deposit_date)
-
-  #     deposit_date2 = Date.new(2023, 1, 13)
-  #     @bank.deposit(2000, deposit_date2)
-
-  #     withdraw_date = Date.new(2023, 1, 14)
-  #     @bank.withdraw(500, withdraw_date)
-
-  #     expect do
-  #       @bank.print_summary
-  #     end.to output("date || credit || debit || balance\n 14/01/2023 || || 500.00 || 2500.00\n 13/01/2023 || 2000.00 || || 3000.00\n 10/01/2023 || 1000.00 || || 1000.00\n").to_stdout
-  #   end
   end
 end

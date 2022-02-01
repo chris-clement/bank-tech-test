@@ -5,7 +5,7 @@
 require './lib/bank_account_display.rb'
 
 class Bank
-  attr_reader :balance, :debit, :credit, :date, :history
+  attr_reader :balance, :debit, :credit, :date, :history, :bank_account_display
 
   def initialize
     @balance = 0
