@@ -35,15 +35,6 @@ class Bank
   end
 
   def print_summary
-    # sort_transaction_history
-    # puts 'date || credit || debit || balance'
-    # @history.each do |transaction|
-    #   if debit_transaction?(transaction)
-    #     puts " #{transaction[:date].strftime('%d/%m/%Y')} || || #{sprintf('%.2f', transaction[:debit])} || #{sprintf('%.2f', transaction[:balance])}"
-    #   else
-    #     puts " #{transaction[:date].strftime('%d/%m/%Y')} || #{sprintf('%.2f', transaction[:credit])} || || #{sprintf('%.2f', transaction[:balance])}"
-    #   end
-    # end
     @bank_account_display.print_summary(@history)
   end
 
@@ -56,14 +47,6 @@ class Bank
   def date_valid?(date)
     date.instance_of?(Date)
   end
-
-  # def sort_transaction_history
-  #   @history.sort_by! { |transaction| transaction[:date] }.reverse!
-  # end
-
-  # def debit_transaction?(transaction)
-  #   transaction[:credit] == 0
-  # end
 
   def check_for_amount_and_date_errors(amount, date)
     if !amount.is_a? Integer
