@@ -115,11 +115,11 @@ bank.withdraw(15)
 Use bank.print_summary to print to the console a history of transaction sorted by new to old.
 ```
 bank.print_summary
-date || credit || debit || balance
- 01/02/2022 || || 70.00 || 80.00       
- 31/01/2022 || || 15.00 || 65.00       
- 31/01/2022 || 100.00 || || 150.00     
- 31/12/2021 || 50.00 || || 50.00       
+    date    ||   credit   ||   debit    ||  balance   
+ 01/02/2022 ||            ||   15.00    ||   65.00    
+ 01/02/2022 ||            ||   70.00    ||   80.00    
+ 01/02/2022 ||   100.00   ||            ||   150.00   
+ 31/12/2021 ||   50.00    ||            ||   50.00      
  ```   
 
  This displays the date of the transaction, whether it was a Credit (Income i.e. Money coming into the account) or Debit (Expense i.e. Money coming out of the account), and the balance on the account.
@@ -173,7 +173,7 @@ Once you have completed the challenge and feel happy with your solution, here's 
 - Sorting the array of hashes seems straight forward using
 array.sort_by! { |transaction| transaction["date"]}.
 
-### Edge Cases to consider
+### Edge Cases I've Considered
 
 - withdraw with non-positive number => Error Thrown :white_check_mark:
 - deposit with non-positive number => Error Thrown :white_check_mark:
