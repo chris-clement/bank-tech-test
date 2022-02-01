@@ -5,24 +5,25 @@ require 'bank_account_display'
 describe BankAccountDisplay do
 
   before(:each) do
-    @bank_account_display = Bank.new
+    @bank_account_display = BankAccountDisplay.new
   end
   describe '#print_summary' do
     it('Is a method within the BankAccountDisplay class') do
       expect(@bank_account_display).to respond_to :print_summary
     end
-    # it('prints the headers for the transaction summary') do
-    #   expect do
-    #     @bank_account_display.print_summary
-    #   end.to output("date || credit || debit || balance\n").to_stdout
-    # end
-    # it('prints the transaction summary of a single deposit') do
-    #   deposit_date = Date.new(2021, 12, 31)
-    #   @bank.deposit(50, deposit_date)
-    #   expect do
-    #     @bank_account_display.print_summary
-    #   end.to output("date || credit || debit || balance\n 31/12/2021 || 50.00 || || 50.00\n").to_stdout
-    # end
+    it('prints the headers for the transaction summary') do
+      history = []
+      expect do
+        @bank_account_display.print_summary(history)
+      end.to output("date || credit || debit || balance\n").to_stdout
+    end
+    it('prints the transaction summary of a single deposit') do
+      deposit_date = Date.new(2021, 12, 31)
+      history = [{ date: deposit_date, credit: 100, debit: 0, balance: 100 }]
+      expect do
+        @bank_account_display.print_summary(history)
+      end.to output("date || credit || debit || balance\n 31/12/2021 || 100.00 || || 100.00\n").to_stdout
+    end
     # it('prints the transaction summary of a single withdrawal') do
     #   withdraw_date = Date.new(2021, 12, 31)
     #   @bank.withdraw(50, withdraw_date)
