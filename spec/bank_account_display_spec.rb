@@ -33,9 +33,7 @@ describe BankAccountDisplay do
     end
     it('prints the transaction summary of a two transactions') do
       deposit_date = Date.new(2021, 12, 30)
-      # @bank.deposit(100, deposit_date)
       withdraw_date = Date.new(2021, 12, 31)
-      # @bank.withdraw(50, withdraw_date)
       history = [{ date: deposit_date, credit: 100, debit: 0, balance: 100 }, 
                  { date: withdraw_date, credit: 0, debit: 50, balance: 50}
                 ]
@@ -45,13 +43,10 @@ describe BankAccountDisplay do
     end
     it('prints the transaction summary of a multiple transactions in order of newest to oldest') do
       deposit_date = Date.new(2023, 1, 10)
-      # @bank.deposit(1000, deposit_date)
 
       deposit_date2 = Date.new(2023, 1, 13)
-      # @bank.deposit(2000, deposit_date2)
 
       withdraw_date = Date.new(2023, 1, 14)
-      # @bank.withdraw(500, withdraw_date)
 
       history = [{ date: deposit_date, credit: 1000, debit: 0, balance: 1000 }, 
                  { date: deposit_date2, credit: 2000, debit: 0, balance: 3000 },
