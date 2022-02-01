@@ -14,7 +14,7 @@ class Bank
   end
 
   def deposit(amount, date = Date.today())
-    check_for_amount_and_date_errors(amount,date)
+    check_for_amount_and_date_errors(amount, date)
     @balance += amount
     @debit = 0
     @credit = amount
@@ -23,7 +23,7 @@ class Bank
   end
 
   def withdraw(amount, date = Date.today())
-    check_for_amount_and_date_errors(amount,date)
+    check_for_amount_and_date_errors(amount, date)
     @balance -= amount
     @credit = 0
     @debit = amount

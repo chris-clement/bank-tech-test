@@ -102,13 +102,17 @@ describe Bank do
     it('Pushes the latest withdraw or deposit into the history array') do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(100, deposit_date)
+
       expect(@bank.history).to eq([{ date: deposit_date, credit: 100, debit: 0, balance: 100 }])
     end
     it('Pushes a deposit and a withdraw into the history array') do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(100, deposit_date)
       @bank.withdraw(50, deposit_date)
-      expect(@bank.history).to eq([{ date: deposit_date, credit: 100, debit: 0, balance: 100 }, { date: deposit_date, credit: 0, debit: 50, balance: 50 }])
+      expect(@bank.history).to eq(
+        [{ date: deposit_date, credit: 100, debit: 0, balance: 100 },
+         { date: deposit_date, credit: 0, debit: 50, balance: 50 }]
+      )
     end
   end
 
