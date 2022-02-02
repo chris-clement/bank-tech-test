@@ -12,6 +12,15 @@ class BankAccountDisplay
     end
   end
 
+  def add_balance(history)
+    balance_amount = 0
+    # This ensures it starts with the oldest transaction
+    history.sort_by! { |transaction| transaction[:date] }.each do |transaction|
+      balance_amount += transaction[:credit] - transaction[:debit] 
+      transaction.merge!(balance: balance_amount)
+    end
+  end
+
   private
 
   def debit_transaction?(transaction)
