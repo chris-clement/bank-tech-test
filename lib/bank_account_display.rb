@@ -1,11 +1,9 @@
 class BankAccountDisplay
 
   def print_summary(history)
-    sort_transaction_history(history)
-
     puts "date || credit || debit || balance"
 
-    history.each do |transaction|
+    sort_transaction_history(history).each do |transaction|
       if debit_transaction?(transaction)
         puts "#{transaction[:date].strftime('%d/%m/%Y')} || || #{sprintf('%.2f', transaction[:debit])} || #{sprintf('%.2f', transaction[:balance])}"
       else
