@@ -34,15 +34,15 @@ describe Bank do
     end
     it('Deposits have an associated date, this defaults to today if one is not provided') do
       @bank.deposit(100)
-      expect(@bank.date.day).to equal Date.today.day
-      expect(@bank.date.month).to equal Date.today.month
-      expect(@bank.date.year).to equal Date.today.year
+      expect(@bank.history[0][:date].day).to equal Date.today.day
+      expect(@bank.history[0][:date].month).to equal Date.today.month
+      expect(@bank.history[0][:date].year).to equal Date.today.year
     end
     it('Deposits have an associated date') do
       @bank.deposit(100, Date.new(2021, 7, 6))
-      expect(@bank.date.day).to equal 6
-      expect(@bank.date.month).to equal 7
-      expect(@bank.date.year).to equal 2021
+      expect(@bank.history[0][:date].day).to equal 6
+      expect(@bank.history[0][:date].month).to equal 7
+      expect(@bank.history[0][:date].year).to equal 2021
     end
     it('Throws an error if you deposit a non-positive integer') do
       expect { @bank.deposit(-20) }.to raise_error 'Cannot withdraw/deposit a non-positive amount.'
@@ -78,15 +78,15 @@ describe Bank do
     end
     it('has an associated date, this defaults to today if one is not provided') do
       @bank.withdraw(100)
-      expect(@bank.date.day).to equal Date.today.day
-      expect(@bank.date.month).to equal Date.today.month
-      expect(@bank.date.year).to equal Date.today.year
+      expect(@bank.history[0][:date].day).to equal Date.today.day
+      expect(@bank.history[0][:date].month).to equal Date.today.month
+      expect(@bank.history[0][:date].year).to equal Date.today.year
     end
     it('has an associated date') do
       @bank.withdraw(100, Date.new(2021, 7, 6))
-      expect(@bank.date.day).to equal 6
-      expect(@bank.date.month).to equal 7
-      expect(@bank.date.year).to equal 2021
+      expect(@bank.history[0][:date].day).to equal 6
+      expect(@bank.history[0][:date].month).to equal 7
+      expect(@bank.history[0][:date].year).to equal 2021
     end
     it('Throws an error if you withdraw a non-positive integer') do
       expect { @bank.withdraw(-20) }.to raise_error 'Cannot withdraw/deposit a non-positive amount.'

@@ -5,13 +5,12 @@
 require './lib/bank_account_display.rb'
 
 class Bank
-  attr_reader :balance, :debit, :credit, :date, :history, :bank_account_display
+  attr_reader :balance, :debit, :credit, :history, :bank_account_display
 
   def initialize
     @balance = 0
     @debit = 0
     @credit = 0
-    @date
     @history = []
     @bank_account_display = BankAccountDisplay.new
   end
@@ -21,8 +20,7 @@ class Bank
     @balance += amount
     @debit = 0
     @credit = amount
-    @date = date
-    add_to_history
+    add_to_history(date)
   end
 
   def withdraw(amount, date = Date.today())
@@ -30,8 +28,7 @@ class Bank
     @balance -= amount
     @credit = 0
     @debit = amount
-    @date = date
-    add_to_history
+    add_to_history(date)
   end
 
   def print_summary
@@ -40,8 +37,8 @@ class Bank
 
   private
 
-  def add_to_history
-    history << { date: @date, credit: @credit, debit: @debit, balance: @balance }
+  def add_to_history(transaction_date)
+    history << { date: transaction_date, credit: @credit, debit: @debit, balance: @balance }
   end
 
   def date_valid?(date)
