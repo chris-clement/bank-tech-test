@@ -7,16 +7,9 @@ describe Bank do
     @bank = Bank.new
   end
 
-  it('starts with a balance of 0') do
-    expect(@bank.balance).to equal 0
-  end
-
   describe('#deposit') do
     it('Is a method within the Bank class') do
       expect(@bank).to respond_to :deposit
-    end
-    it('Increases the balance by the amount deposited') do
-      expect { @bank.deposit(50) }.to change { @bank.balance }.by 50
     end
     it('Updates the credit variable to equal the amount desposited') do
       @bank.deposit(50)
@@ -58,9 +51,6 @@ describe Bank do
   describe('#withdraw') do
     it('Is a method within the Bank class') do
       expect(@bank).to respond_to :withdraw
-    end
-    it('Reduces the balance by the amount withdrawn') do
-      expect { @bank.withdraw(50) }.to change { @bank.balance }.by(-50)
     end
     it('Updates the debit variable to equal the amount withdrawn') do
       @bank.withdraw(50)
@@ -104,15 +94,15 @@ describe Bank do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(100, deposit_date)
 
-      expect(@bank.history).to eq([{ date: deposit_date, credit: 100, debit: 0, balance: 100 }])
+      expect(@bank.history).to eq([{ date: deposit_date, credit: 100, debit: 0 }])
     end
     it('Pushes a deposit and a withdraw into the history array') do
       deposit_date = Date.new(2021, 12, 31)
       @bank.deposit(100, deposit_date)
       @bank.withdraw(50, deposit_date)
       expect(@bank.history).to eq(
-        [{ date: deposit_date, credit: 100, debit: 0, balance: 100 },
-         { date: deposit_date, credit: 0, debit: 50, balance: 50 }]
+        [{ date: deposit_date, credit: 100, debit: 0 },
+         { date: deposit_date, credit: 0, debit: 50 }]
       )
     end
   end

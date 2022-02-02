@@ -5,10 +5,9 @@
 require './lib/bank_account_display.rb'
 
 class Bank
-  attr_reader :balance, :debit, :credit, :history, :bank_account_display
+  attr_reader :debit, :credit, :history, :bank_account_display
 
   def initialize
-    @balance = 0
     @debit = 0
     @credit = 0
     @history = []
@@ -17,7 +16,6 @@ class Bank
 
   def deposit(amount, date = Date.today())
     check_for_amount_and_date_errors(amount, date)
-    @balance += amount
     @debit = 0
     @credit = amount
     add_to_history(date)
@@ -25,7 +23,6 @@ class Bank
 
   def withdraw(amount, date = Date.today())
     check_for_amount_and_date_errors(amount, date)
-    @balance -= amount
     @credit = 0
     @debit = amount
     add_to_history(date)
@@ -38,7 +35,7 @@ class Bank
   private
 
   def add_to_history(transaction_date)
-    history << { date: transaction_date, credit: @credit, debit: @debit, balance: @balance }
+    history << { date: transaction_date, credit: @credit, debit: @debit }
   end
 
   def date_valid?(date)
