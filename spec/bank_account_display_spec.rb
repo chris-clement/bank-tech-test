@@ -6,7 +6,6 @@ describe BankAccountDisplay do
 
   before(:each) do
     @bank_account_display = BankAccountDisplay.new
-    @column_spacing = BankAccountDisplay::COLUMN_SPACING
   end
   describe '#print_summary' do
     it('Is a method within the BankAccountDisplay class') do
@@ -17,7 +16,7 @@ describe BankAccountDisplay do
       expect do
         @bank_account_display.print_summary(history)
       end.to output(
-                     "date".center(@column_spacing) + "||" + "credit".center(@column_spacing) + "||" + "debit".center(@column_spacing) + "||" + "balance".center(@column_spacing) +"\n"
+                    "date || credit || debit || balance\n" 
                    ).to_stdout
     end
     it('prints the transaction summary of a single deposit') do
@@ -26,8 +25,8 @@ describe BankAccountDisplay do
       expect do
         @bank_account_display.print_summary(history)
       end.to output(
-                    "date".center(@column_spacing) + "||" + "credit".center(@column_spacing) + "||" + "debit".center(@column_spacing) + "||" + "balance".center(@column_spacing) +"\n" + 
-                    "31/12/2021".center(@column_spacing) + "||" + "100.00".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" + "100.00".center(@column_spacing) + "\n"
+                    "date || credit || debit || balance\n"  + 
+                    "31/12/2021 || 100.00 || || 100.00\n"
                    ).to_stdout
     end
     it('prints the transaction summary of a single withdrawal') do
@@ -36,8 +35,8 @@ describe BankAccountDisplay do
       expect do
         @bank_account_display.print_summary(history)
       end.to output(
-                    "date".center(@column_spacing) + "||" + "credit".center(@column_spacing) + "||" + "debit".center(@column_spacing) + "||" + "balance".center(@column_spacing) +"\n" + 
-                    "31/12/2021".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" + "50.00".center(@column_spacing) + "||" +  "-50.00".center(@column_spacing) + "\n"
+                    "date || credit || debit || balance\n" + 
+                    "31/12/2021 || || 50.00 || -50.00\n"
                     ).to_stdout
     end
     it('prints the transaction summary of a two transactions') do
@@ -50,9 +49,9 @@ describe BankAccountDisplay do
       expect do
         @bank_account_display.print_summary(history)
       end.to output(
-                    "date".center(@column_spacing) + "||" + "credit".center(@column_spacing) + "||" + "debit".center(@column_spacing) + "||" + "balance".center(@column_spacing) +"\n" + 
-                    "31/12/2021".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" +  "50.00".center(@column_spacing) + "||" +  "50.00".center(@column_spacing) + "\n" + 
-                    "30/12/2021".center(@column_spacing) + "||" + "100.00".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" + "100.00".center(@column_spacing) + "\n"
+                    "date || credit || debit || balance\n"  + 
+                    "31/12/2021 || || 50.00 || 50.00\n" + 
+                    "30/12/2021 || 100.00 || || 100.00\n"
                     ).to_stdout
     end
     it('prints the transaction summary of a multiple transactions in order of newest to oldest') do
@@ -70,10 +69,10 @@ describe BankAccountDisplay do
       expect do
         @bank_account_display.print_summary(history)
       end.to output(
-                    "date".center(@column_spacing) + "||" + "credit".center(@column_spacing) + "||" + "debit".center(@column_spacing) + "||" + "balance".center(@column_spacing) +"\n" + 
-                    "14/01/2023".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" +  "500.00".center(@column_spacing) + "||" + "2500.00".center(@column_spacing) + "\n" + 
-                    "13/01/2023".center(@column_spacing) + "||" + "2000.00".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" + "3000.00".center(@column_spacing) + "\n" + 
-                    "10/01/2023".center(@column_spacing) + "||" +  "1000.00".center(@column_spacing) + "||" + "".center(@column_spacing) + "||" +  "1000.00".center(@column_spacing) + "\n"
+                    "date || credit || debit || balance\n"  + 
+                    "14/01/2023 || || 500.00 || 2500.00\n" + 
+                    "13/01/2023 || 2000.00 || || 3000.00\n" + 
+                    "10/01/2023 || 1000.00 || || 1000.00\n"
                     ).to_stdout
     end
   end
