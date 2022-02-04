@@ -7,11 +7,11 @@ require './lib/bank_account_display.rb'
 class Bank
   attr_reader :debit, :credit, :history, :bank_account_display
 
-  def initialize
+  def initialize(bank_account_display = BankAccountDisplay.new)
     @debit = 0
     @credit = 0
     @history = []
-    @bank_account_display = BankAccountDisplay.new
+    @bank_account_display = bank_account_display
   end
 
   def deposit(amount, date = Date.today())

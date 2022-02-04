@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'bank'
+require 'bank_account_display'
 
 describe Bank do
   before(:each) do
@@ -109,27 +110,16 @@ describe Bank do
 
   describe '#print_summary' do
     it('Calls on the method in the BankAccountDisplay class') do
-      bank_account_display = double('bank_account_display')
-      allow(bank_account_display).to receive(:print_summary).and_return "date || credit || debit || balance\n 14/01/2023 || || 500.00 || 2500.00\n 13/01/2023 || 2000.00 || || 3000.00\n 10/01/2023 || 1000.00 || || 1000.00\n"
+      
+      mock_bank_account_display =  double('BankAccountDisplay')
 
-      deposit_date = Date.new(2023, 1, 10)
-      deposit_date2 = Date.new(2023, 1, 13)
-      withdraw_date = Date.new(2023, 1, 14)
+      allow(mock_bank_account_display).to receive(:print_summary).and_return "date || credit || debit || balance\n14/01/2023 || || 500.00 || 2500.00\n13/01/2023 || 2000.00 || || 3000.00\n10/01/2023 || 1000.00 || || 1000.00\n"
+      bank = Bank.new(mock_bank_account_display)
 
-      history = [
-                  { date: deposit_date, credit: 1000, debit: 0, balance: 1000 },
-                  { date: deposit_date2, credit: 2000, debit: 0, balance: 3000 },
-                  { date: withdraw_date, credit: 0, debit: 500, balance: 2500 }
-                ]
-
-      @bank.print_summary
-
-      expect do
-        @bank.bank_account_display.print_summary(history)
-      end.to output("date || credit || debit || balance\n" + 
+      expect(bank.print_summary).to eq("date || credit || debit || balance\n" + 
                     "14/01/2023 || || 500.00 || 2500.00\n" + 
                     "13/01/2023 || 2000.00 || || 3000.00\n" + 
-                    "10/01/2023 || 1000.00 || || 1000.00\n").to_stdout
+                    "10/01/2023 || 1000.00 || || 1000.00\n")
     end
   end
 end
